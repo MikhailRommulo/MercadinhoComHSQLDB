@@ -30,7 +30,8 @@ import javax.swing.border.EtchedBorder;
 import java.awt.SystemColor;
 
 public class PDVTela {
-
+	
+	private TableModelItem tableModelItem;
 	private JFrame frame;
 	private JTable tabPdv;
 	private JTextField textTotDesconto;
@@ -60,6 +61,8 @@ public class PDVTela {
 	 */
 	public PDVTela() {
 		initialize();
+		this.tableModelItem = new TableModelItem();
+        this.tabPdv.setModel(tableModelItem);
 	}
 
 	/**
