@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import control.MontarListaProdutos;
+import control.ControlePDV;
 import model.Produto;
 import model.connection.ConnectionFactory;
 import model.dao.ProdutoDAO;
@@ -63,6 +63,15 @@ public class PDVTela {
 		initialize();
 		this.tableModelItem = new TableModelItem();
         this.tabPdv.setModel(tableModelItem);
+        ajustarLarguraColunas();
+	}
+	
+	private void ajustarLarguraColunas() {
+		tabPdv.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tabPdv.getColumnModel().getColumn(0).setPreferredWidth(380);
+        tabPdv.getColumnModel().getColumn(1).setPreferredWidth(60);
+        tabPdv.getColumnModel().getColumn(2).setPreferredWidth(90);
+        tabPdv.getColumnModel().getColumn(3).setPreferredWidth(60);
 	}
 
 	/**
@@ -81,21 +90,16 @@ public class PDVTela {
 			new Object[][] {
 			},
 			new String[] {
-				"Produto", "Pre\u00E7o", "Unidades", "Subtotal"
+				"Coluna"
 			}
-		));
-		tabPdv.getColumnModel().getColumn(0).setPreferredWidth(380);
-		tabPdv.getColumnModel().getColumn(0).setMinWidth(380);
-		tabPdv.getColumnModel().getColumn(0).setMaxWidth(380);
-		tabPdv.getColumnModel().getColumn(1).setPreferredWidth(80);
-		tabPdv.getColumnModel().getColumn(1).setMinWidth(80);
-		tabPdv.getColumnModel().getColumn(1).setMaxWidth(80);
-		tabPdv.getColumnModel().getColumn(2).setPreferredWidth(60);
-		tabPdv.getColumnModel().getColumn(2).setMinWidth(60);
-		tabPdv.getColumnModel().getColumn(2).setMaxWidth(60);
-		tabPdv.getColumnModel().getColumn(3).setPreferredWidth(80);
-		tabPdv.getColumnModel().getColumn(3).setMinWidth(80);
-		tabPdv.getColumnModel().getColumn(3).setMaxWidth(80);
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});		
 		tabPdv.setRowHeight(30);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(tabPdv);
@@ -146,7 +150,7 @@ public class PDVTela {
 		textEntradaCodigo.setFont(new Font("Arial", Font.BOLD, 20));
 		textEntradaCodigo.setColumns(10);
 		
-		MontarListaProdutos lista = new MontarListaProdutos();
+		
 		textEntradaCodigo.addKeyListener(new KeyListener() {
 			
 			
@@ -154,20 +158,9 @@ public class PDVTela {
 			public void keyReleased(KeyEvent e) {
 				
 				if(textEntradaCodigo.getText().length() == 13) {
-					ProdutoDAO buscar = new ProdutoDAO();
-					Produto produto  = buscar.buscarProduto(textEntradaCodigo.getText());					
-					ConnectionFactory.fechar();
-					textResultadoProduto.setText(produto.getDescricao());					
-					lista.armazenaProdutos(produto);
-					DefaultTableModel tabela = (DefaultTableModel) tabPdv.getModel();
-					//As linhas são zeradas a cada inserção, assim facilitando o trabalho com a lista
-					tabela.setNumRows(0);
-					for(Produto p: lista.getProdutos()) {						
-						tabela.addRow(new Object[] {
-								p.getDescricao(),
-								p.getPreco()
-						});
-					}
+					ControlePDV controle = new ControlePDV();
+					controle.adicionaItem(textEntradaCodigo.getText());
+					tableModelItem.pegarListaDeItens(controle.getItens());
 					
 				}
 				

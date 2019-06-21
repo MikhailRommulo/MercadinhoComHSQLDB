@@ -41,6 +41,8 @@ public class ProdutoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			ConnectionFactory.fechar();
 		}
 		return p;
 	}
