@@ -15,28 +15,39 @@ public class ControlePDV {
 		Produto produto  = buscar.buscarProduto(codigo);
 		Item item = new Item();
 		item.setProduto(produto);
-		armazenaItens(item);
+		armazenaItens(item); 
+		
 	}
 	
 	public void armazenaItens(Item item) {
 		boolean podeEstarNalista = true;
-		if(itens.isEmpty()) {			
-			this.itens.add(item);		 
+		if(itens.isEmpty()) {
+			item.setQuantidade(1);
+			this.itens.add(item);
 		}else {			
 			for(Item i: itens) {				
-				if(item.getProduto().equals(i.getProduto())) {					
-					podeEstarNalista = false;					
+				if(item.getProduto().getCodigo().equals(i.getProduto().getCodigo())) {					
+					podeEstarNalista = false;
+					mudarQuantidade(item);
 					break;
 				}
 			}
 			if(podeEstarNalista) {
+				item.setQuantidade(1);
 				this.itens.add(item);
 			}
 		}
 	}
 	
+	private void mudarQuantidade(Item item) {
+		for(int i = 0; i<itens.size();i++) {
+			if(item.getProduto().getCodigo().equals(itens.get(i).getProduto().getCodigo())) {
+				itens.get(i).setQuantidade(itens.get(i).getQuantidade()+1);
+			}
+		}
+	}
 	
 	public ArrayList<Item> getItens() {
-		return itens;
+		return this.itens;
 	}
 }

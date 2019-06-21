@@ -4,6 +4,7 @@ public class Item {
 	private Produto produto;
 	private int quantidade;
 	private double subTotal;
+	
 	public Produto getProduto() {
 		return produto;
 	}
@@ -17,10 +18,8 @@ public class Item {
 		this.quantidade = quantidade;
 	}
 	public double getSubTotal() {
+		subTotal = this.quantidade*this.produto.getPreco();
 		return subTotal;
-	}
-	public void setSubTotal() {
-		this.subTotal = this.produto.getPreco()*this.quantidade;
 	}
 	
 }

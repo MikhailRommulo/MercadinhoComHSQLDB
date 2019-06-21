@@ -150,15 +150,14 @@ public class PDVTela {
 		textEntradaCodigo.setFont(new Font("Arial", Font.BOLD, 20));
 		textEntradaCodigo.setColumns(10);
 		
-		
+		ControlePDV controle = new ControlePDV();
 		textEntradaCodigo.addKeyListener(new KeyListener() {
 			
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				
-				if(textEntradaCodigo.getText().length() == 13) {
-					ControlePDV controle = new ControlePDV();
+				if(textEntradaCodigo.getText().length() == 13) {					
 					controle.adicionaItem(textEntradaCodigo.getText());
 					tableModelItem.pegarListaDeItens(controle.getItens());
 					
