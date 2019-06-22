@@ -5,21 +5,30 @@ import java.util.ArrayList;
 import model.Item;
 import model.Produto;
 import model.dao.ProdutoDAO;
+import view.PDVTela;
 
 public class ControlePDV {
 	
 	private ArrayList<Item> itens = new ArrayList<>();
+	private Produto produto;
+	private double total;
 	
 	public void adicionaItem(String codigo) {
 		ProdutoDAO buscar = new ProdutoDAO();
 		Produto produto  = buscar.buscarProduto(codigo);
+		this.produto = produto;
 		Item item = new Item();
 		item.setProduto(produto);
 		armazenaItens(item); 
 		
 	}
 	
-	public void armazenaItens(Item item) {
+	public String descricaoProduto() {
+		return this.produto.getDescricao();
+	}
+	
+	
+	private void armazenaItens(Item item) {
 		boolean podeEstarNalista = true;
 		if(itens.isEmpty()) {
 			item.setQuantidade(1);

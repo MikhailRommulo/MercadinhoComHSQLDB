@@ -73,6 +73,7 @@ public class PDVTela {
         tabPdv.getColumnModel().getColumn(2).setPreferredWidth(90);
         tabPdv.getColumnModel().getColumn(3).setPreferredWidth(60);
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -157,10 +158,11 @@ public class PDVTela {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				
-				if(textEntradaCodigo.getText().length() == 13) {					
+				if(textEntradaCodigo.getText().length() == 13) {
 					controle.adicionaItem(textEntradaCodigo.getText());
-					tableModelItem.pegarListaDeItens(controle.getItens());
-					
+					textResultadoProduto.setText(controle.descricaoProduto());
+					tableModelItem.receberListaDeItens(controle.getItens());
+					textTotCompra.setText(String.valueOf(tableModelItem.totalNota()));					
 				}
 				
 			}
