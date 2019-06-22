@@ -18,16 +18,7 @@ public class TableModelItem extends AbstractTableModel{
 	public void receberListaDeItens(List<Item> list) {
 		this.listaDeItens = list;
 		fireTableDataChanged();
-	}
-	
-	public double totalNota() {
-		double total = 0;
-		for(int i=0; i<this.listaDeItens.size();i++) {
-			total+=this.listaDeItens.get(i).getSubTotal();
-		}
-		return total;
-	}
-	
+	}	
 	
 	public Item pegarItem(int rowIndex) {
 		return this.listaDeItens.get(rowIndex);

@@ -162,7 +162,7 @@ public class PDVTela {
 					controle.adicionaItem(textEntradaCodigo.getText());
 					textResultadoProduto.setText(controle.descricaoProduto());
 					tableModelItem.receberListaDeItens(controle.getItens());
-					textTotCompra.setText(String.valueOf(tableModelItem.totalNota()));					
+					textTotCompra.setText(String.valueOf(controle.totalNota()));					
 				}
 				
 			}

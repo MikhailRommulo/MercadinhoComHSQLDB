@@ -56,6 +56,14 @@ public class ControlePDV {
 		}
 	}
 	
+	public double totalNota() {
+		double total = 0;
+		for(int i=0; i<this.itens.size();i++) {
+			total+=this.itens.get(i).getSubTotal();
+		}
+		return total;
+	}
+	
 	public ArrayList<Item> getItens() {
 		return this.itens;
 	}
