@@ -63,22 +63,6 @@ public class PDVTela {
 		initialize();
 		this.tableModelItem = new TableModelItem();
         this.tabPdv.setModel(tableModelItem);
-        
-        JPanel panel = new JPanel();
-        panel.setBounds(25, 632, 650, 40);
-        frame.getContentPane().add(panel);
-        panel.setLayout(null);
-        
-        JButton btnR = new JButton("Remover");
-        btnR.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        		tableModelItem.removerItem(tabPdv.getSelectedRow());
-        		ControlePDV controle = new ControlePDV();
-        		controle.setItens(tableModelItem.pegarListaDeItens());        		
-        	}
-        });
-        btnR.setBounds(518, 11, 122, 23);
-        panel.add(btnR);
         ajustarLarguraColunas();
 	}
 	
@@ -98,6 +82,8 @@ public class PDVTela {
 		frame = new JFrame();
 		frame.setBounds(0, 0, 1200, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ControlePDV controle = new ControlePDV();
 		
 		tabPdv = new JTable();
 		tabPdv.setBounds(1, 26, 648, 16);
@@ -167,9 +153,7 @@ public class PDVTela {
 		textEntradaCodigo.setFont(new Font("Arial", Font.BOLD, 20));
 		textEntradaCodigo.setColumns(10);
 		
-		ControlePDV controle = new ControlePDV();
 		textEntradaCodigo.addKeyListener(new KeyListener() {
-			
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -241,6 +225,27 @@ public class PDVTela {
 			}
 		});
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 16));
+		
+		JPanel panelEditarRemover = new JPanel();
+        panelEditarRemover.setBorder(new LineBorder(new Color(0, 0, 0)));
+        panelEditarRemover.setBounds(25, 632, 650, 40);
+        frame.getContentPane().add(panelEditarRemover);
+        panelEditarRemover.setLayout(null);
+        
+        JButton btnR = new JButton("Remover");
+        btnR.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		tableModelItem.removerItem(tabPdv.getSelectedRow());
+        		controle.setItens(tableModelItem.pegarListaDeItens());
+        		textTotCompra.setText(String.valueOf(controle.totalNota()));
+        	}
+        });
+        btnR.setBounds(518, 11, 122, 23);
+        panelEditarRemover.add(btnR);
+        
+        JButton btnEditarQuantidade = new JButton("Editar quantidade");
+        btnEditarQuantidade.setBounds(334, 11, 174, 23);
+        panelEditarRemover.add(btnEditarQuantidade);
 		
 	}
 }
