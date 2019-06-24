@@ -31,7 +31,8 @@ public class TableModelItem extends AbstractTableModel{
 	public void removerItem(int rowIndex) {
 		this.listaDeItens.remove(rowIndex);
 		fireTableDataChanged();
-	}
+	}	
+	
 	
 	@Override
 	public int getColumnCount() {

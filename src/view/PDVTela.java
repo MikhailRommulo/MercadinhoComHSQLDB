@@ -12,6 +12,8 @@ import model.connection.ConnectionFactory;
 import model.dao.ProdutoDAO;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -227,7 +229,7 @@ public class PDVTela {
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 16));
 		
 		JPanel panelEditarRemover = new JPanel();
-        panelEditarRemover.setBorder(new LineBorder(new Color(0, 0, 0)));
+        panelEditarRemover.setBorder(new LineBorder(Color.LIGHT_GRAY));
         panelEditarRemover.setBounds(25, 632, 650, 40);
         frame.getContentPane().add(panelEditarRemover);
         panelEditarRemover.setLayout(null);
@@ -244,6 +246,14 @@ public class PDVTela {
         panelEditarRemover.add(btnR);
         
         JButton btnEditarQuantidade = new JButton("Editar quantidade");
+        btnEditarQuantidade.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String quantidade = JOptionPane.showInputDialog("Editar quantidade");
+        		controle.getItens().get(tabPdv.getSelectedRow()).setQuantidade(Integer.parseInt(quantidade));
+        		tableModelItem.receberListaDeItens(controle.getItens());
+        		textTotCompra.setText(String.valueOf(controle.totalNota()));
+        	}
+        });
         btnEditarQuantidade.setBounds(334, 11, 174, 23);
         panelEditarRemover.add(btnEditarQuantidade);
 		
