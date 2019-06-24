@@ -63,6 +63,22 @@ public class PDVTela {
 		initialize();
 		this.tableModelItem = new TableModelItem();
         this.tabPdv.setModel(tableModelItem);
+        
+        JPanel panel = new JPanel();
+        panel.setBounds(25, 632, 650, 40);
+        frame.getContentPane().add(panel);
+        panel.setLayout(null);
+        
+        JButton btnR = new JButton("Remover");
+        btnR.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		tableModelItem.removerItem(tabPdv.getSelectedRow());
+        		ControlePDV controle = new ControlePDV();
+        		controle.setItens(tableModelItem.pegarListaDeItens());        		
+        	}
+        });
+        btnR.setBounds(518, 11, 122, 23);
+        panel.add(btnR);
         ajustarLarguraColunas();
 	}
 	
@@ -106,7 +122,7 @@ public class PDVTela {
 		frame.getContentPane().add(tabPdv);
 		
 		JScrollPane scrollPane = new JScrollPane(tabPdv);
-		scrollPane.setBounds(25, 25, 650, 650);
+		scrollPane.setBounds(25, 25, 650, 606);
 		
 		JLabel lblDesconto = new JLabel("Desconto");
 		lblDesconto.setBounds(25, 707, 80, 20);

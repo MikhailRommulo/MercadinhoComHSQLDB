@@ -1,6 +1,7 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Item;
 import model.Produto;
@@ -11,7 +12,10 @@ public class ControlePDV {
 	
 	private ArrayList<Item> itens = new ArrayList<>();
 	private Produto produto;
-	private double total;
+	
+	public void setItens(List<Item> list) {
+		this.itens = (ArrayList<Item>) list;
+	}
 	
 	public void adicionaItem(String codigo) {
 		ProdutoDAO buscar = new ProdutoDAO();

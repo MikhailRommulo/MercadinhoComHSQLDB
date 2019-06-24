@@ -8,20 +8,29 @@ import javax.swing.table.AbstractTableModel;
 import model.Item;
 
 public class TableModelItem extends AbstractTableModel{
-	private List<Item> listaDeItens;
+	private ArrayList<Item> listaDeItens;
 	private String[] colunas = {"Produto","Preço","Quantidade","Total"};
 
 	public TableModelItem() {
 		this.listaDeItens = new ArrayList<>();
 	}
 	
-	public void receberListaDeItens(List<Item> list) {
+	public void receberListaDeItens(ArrayList<Item> list) {
 		this.listaDeItens = list;
 		fireTableDataChanged();
-	}	
+	}
+	
+	public List<Item> pegarListaDeItens(){
+		return this.listaDeItens;
+	}
 	
 	public Item pegarItem(int rowIndex) {
 		return this.listaDeItens.get(rowIndex);
+	}
+	
+	public void removerItem(int rowIndex) {
+		this.listaDeItens.remove(rowIndex);
+		fireTableDataChanged();
 	}
 	
 	@Override
