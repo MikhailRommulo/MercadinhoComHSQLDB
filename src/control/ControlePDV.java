@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +18,13 @@ public class ControlePDV {
 		this.itens = (ArrayList<Item>) list;
 	}
 	
-	public void adicionaItem(String codigo) {
+	public void adicionaItem(String codigo) throws SQLException {
 		ProdutoDAO buscar = new ProdutoDAO();
 		Produto produto  = buscar.buscarProduto(codigo);
 		this.produto = produto;
 		Item item = new Item();
 		item.setProduto(produto);
-		armazenaItens(item); 
+		armazenaItens(item);
 		
 	}
 	

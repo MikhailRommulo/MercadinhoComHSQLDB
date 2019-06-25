@@ -52,12 +52,6 @@ public class Produto {
 	}
 	public void setValidade(LocalDateTime validade) {
 		this.validade = validade;
-	}
-	@Override
-	public String toString() {
-		return "Produto [codigo=" + codigo + ", descricao=" + descricao + ", marca=" + marca + ", setor=" + setor
-				+ ", fornecedor=" + fornecedor + ", preco=" + preco + ", validade=" + validade + "]";
-	}
-	
+	}	
 	
 }

@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
@@ -161,7 +162,12 @@ public class PDVTela {
 			public void keyReleased(KeyEvent e) {
 				
 				if(textEntradaCodigo.getText().length() == 13) {
-					controle.adicionaItem(textEntradaCodigo.getText());
+					try {
+						controle.adicionaItem(textEntradaCodigo.getText());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					textResultadoProduto.setText(controle.descricaoProduto());
 					tableModelItem.receberListaDeItens(controle.getItens());
 					textTotCompra.setText(String.valueOf(controle.totalNota()));					
@@ -229,7 +235,7 @@ public class PDVTela {
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 16));
 		
 		JPanel panelEditarRemover = new JPanel();
-        panelEditarRemover.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        panelEditarRemover.setBorder(new LineBorder(Color.GRAY));
         panelEditarRemover.setBounds(25, 632, 650, 40);
         frame.getContentPane().add(panelEditarRemover);
         panelEditarRemover.setLayout(null);
