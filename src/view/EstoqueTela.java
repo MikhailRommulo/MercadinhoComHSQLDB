@@ -84,15 +84,15 @@ public class EstoqueTela extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JButton btnAumentarQuantidade = new JButton("Aumentar quantidade");
-		btnAumentarQuantidade.setBounds(20, 657, 171, 23);
+		btnAumentarQuantidade.setBounds(5, 657, 171, 23);
 		contentPane.add(btnAumentarQuantidade);
 		
 		JButton btnDiminuirQuantidade = new JButton("Diminuir quantidade");
-		btnDiminuirQuantidade.setBounds(20, 691, 171, 23);
+		btnDiminuirQuantidade.setBounds(5, 691, 171, 23);
 		contentPane.add(btnDiminuirQuantidade);
 		
 		JButton btnEditarItem = new JButton("Editar item");
-		btnEditarItem.setBounds(201, 657, 115, 23);
+		btnEditarItem.setBounds(186, 657, 115, 23);
 		contentPane.add(btnEditarItem);
 		
 		JButton btnEntradaDeProdutos = new JButton("Entrada de produtos");
