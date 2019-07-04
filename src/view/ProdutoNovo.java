@@ -165,7 +165,7 @@ public class ProdutoNovo extends JDialog {
 						produto.setMarca(textMarca.getText());
 						produto.setSetor(textSetor.getText());
 						produto.setPreco(Double.parseDouble(textPreco.getText()));
-						produto.setFornecedor(textFornecedor.getText());
+						produto.getFornecedor().setCNPJ(textFornecedor.getText());
 						
 						String data = textAno.getText()+"-"+textMes.getText()+"-"+textDia.getText()+" 00:00";
 						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

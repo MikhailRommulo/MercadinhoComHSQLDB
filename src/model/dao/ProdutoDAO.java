@@ -24,7 +24,7 @@ public class ProdutoDAO {
 			stmt.setString(2, p.getDescricao());
 			stmt.setString(3, p.getMarca());
 			stmt.setString(4, p.getSetor());
-			stmt.setString(5, p.getFornecedor());
+			stmt.setString(5, p.getFornecedor().getCNPJ());
 			stmt.setDouble(6, p.getPreco());
 		
 			LocalDateTime validade = p.getValidade();
@@ -53,7 +53,7 @@ public class ProdutoDAO {
 			p.setDescricao(rs.getString("DESCRICAO"));
 			p.setMarca(rs.getString("MARCA"));
 			p.setSetor(rs.getString("SETOR"));
-			p.setFornecedor(rs.getString("FORNECEDOR"));
+			p.getFornecedor().setCNPJ(rs.getString("FORNECEDOR"));
 			p.setPreco(rs.getDouble("PRECO"));
 			//Convertendo timestamp para LocalDateTime
 			Timestamp validade = rs.getTimestamp("VALIDADE");			

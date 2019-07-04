@@ -7,7 +7,7 @@ public class Produto {
 	private String descricao;
 	private String marca;
 	private String setor;
-	private String fornecedor;
+	private Fornecedor fornecedor;
 	private double preco;
 	private LocalDateTime validade;
 	
@@ -35,12 +35,6 @@ public class Produto {
 	public void setSetor(String setor) {
 		this.setor = setor;
 	}
-	public String getFornecedor() {
-		return fornecedor;
-	}
-	public void setFornecedor(String fornecedor) {
-		this.fornecedor = fornecedor;
-	}
 	public double getPreco() {
 		return preco;
 	}
@@ -52,6 +46,12 @@ public class Produto {
 	}
 	public void setValidade(LocalDateTime validade) {
 		this.validade = validade;
+	}
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}	
 	
 }
