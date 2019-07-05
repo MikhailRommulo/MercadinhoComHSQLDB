@@ -11,6 +11,8 @@ import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProdutoTela extends JFrame {
 
@@ -41,6 +43,12 @@ public class ProdutoTela extends JFrame {
 		this.tabProdutos.setModel(tableModelProduto);
 		
 		JButton btnNovoProduto = new JButton("Novo Produto");
+		btnNovoProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ProdutoNovo frame = new ProdutoNovo();
+				frame.setVisible(true);
+			}
+		});
 		btnNovoProduto.setBounds(1019, 718, 155, 32);
 		contentPane.add(btnNovoProduto);
 		
