@@ -1,5 +1,6 @@
 package view;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -58,8 +59,7 @@ public class TableModelProduto extends AbstractTableModel {
 			case 3:
 				return this.listaDeProdutos.get(rowIndex).getMarca();
 			case 4:
-				String preco = "R$"+this.listaDeProdutos.get(rowIndex).getPreco();
-				return preco;
+				return NumberFormat.getCurrencyInstance().format(this.listaDeProdutos.get(rowIndex).getPreco());
 			case 5:
 				return this.listaDeProdutos.get(rowIndex).getSetor();
 			case 6:
