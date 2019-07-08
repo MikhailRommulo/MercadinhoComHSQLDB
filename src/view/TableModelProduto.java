@@ -1,5 +1,8 @@
 package view;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -51,15 +54,19 @@ public class TableModelProduto extends AbstractTableModel {
 			case 1:
 				return this.listaDeProdutos.get(rowIndex).getDescricao();
 			case 2:
-				return this.listaDeProdutos.get(rowIndex).getFornecedor().getNomeFantasia();
+				return "teste";
 			case 3:
 				return this.listaDeProdutos.get(rowIndex).getMarca();
 			case 4:
-				return this.listaDeProdutos.get(rowIndex).getPreco();
+				String preco = "R$"+this.listaDeProdutos.get(rowIndex).getPreco();
+				return preco;
 			case 5:
 				return this.listaDeProdutos.get(rowIndex).getSetor();
 			case 6:
-				return this.listaDeProdutos.get(rowIndex).getValidade();
+				LocalDateTime data = this.listaDeProdutos.get(rowIndex).getValidade();
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				String validade = dtf.format(data);
+				return validade;
 			default:
 				return this.listaDeProdutos.get(rowIndex);
 		}

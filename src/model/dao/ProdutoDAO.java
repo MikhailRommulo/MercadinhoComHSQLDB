@@ -42,17 +42,38 @@ public class ProdutoDAO {
 		
 	}
 	
-	public ArrayList<Produto> read() throws SQLException{
+	public ArrayList<Produto> read(String pesquisa, String opcao) throws SQLException{
+		String sql = "";
+		switch(opcao) {
+			case "Descrição":
+				sql="SELECT * FROM produtos WHERE descricao LIKE ?";
+				break;
+			case "Fornecedor":
+				sql="SELECT * FROM produtos WHERE fornecedor LIKE ?";
+				break;
+			case "Código":
+				sql="SELECT * FROM produtos WHERE codigo LIKE ?";
+				break;
+			case "Marca":
+				sql="SELECT * FROM produtos WHERE marca LIKE ?";
+				break;
+			case "Setor":
+				sql="SELECT * FROM produtos WHERE setor LIKE ?";
+				break;
+		}
 		Connection connection = ConnectionFactory.conectar();
-		String sql = "SELECT * FROM produtos";
+		
 		
 		ArrayList<Produto> produtos = new ArrayList<>();
 		
 		try {
 			stmt = connection.prepareStatement(sql);
+			stmt.setString(1, "%"+pesquisa+"%");
 			ResultSet rs = stmt.executeQuery();			
-			Produto p = new Produto();
+			
 			while(rs.next()) {
+				Produto p = new Produto();
+				
 				p.setCodigo(rs.getString("CODIGO"));
 				p.setDescricao(rs.getString("DESCRICAO"));
 				p.setMarca(rs.getString("MARCA"));

@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import control.ControleProduto;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JComboBox;
@@ -13,12 +16,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ProdutoTela extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tabProdutos;
-	private JTextField textField;
+	private JTextField textPesquisa;
 	private TableModelProduto tableModelProduto;
 
 	/**
@@ -41,34 +47,16 @@ public class ProdutoTela extends JFrame {
 		initialize();
 		this.tableModelProduto = new TableModelProduto();
 		this.tabProdutos.setModel(tableModelProduto);
-		
-		JButton btnNovoProduto = new JButton("Novo Produto");
-		btnNovoProduto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ProdutoNovo frame = new ProdutoNovo();
-				frame.setVisible(true);
-			}
-		});
-		btnNovoProduto.setBounds(1019, 718, 155, 32);
-		contentPane.add(btnNovoProduto);
-		
-		JButton btnExcluirProduto = new JButton("Excluir");
-		btnExcluirProduto.setBounds(163, 718, 143, 32);
-		contentPane.add(btnExcluirProduto);
-		
-		JButton btnNewButton = new JButton("Editar");
-		btnNewButton.setBounds(10, 718, 143, 32);
-		contentPane.add(btnNewButton);
-		
+		ajustarLarguraColunas();		
 	}
 	
 	private void ajustarLarguraColunas() {
 		tabProdutos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		tabProdutos.getColumnModel().getColumn(0).setPreferredWidth(60);
-        tabProdutos.getColumnModel().getColumn(1).setPreferredWidth(60);
-        tabProdutos.getColumnModel().getColumn(2).setPreferredWidth(90);
-        tabProdutos.getColumnModel().getColumn(3).setPreferredWidth(60);
-        tabProdutos.getColumnModel().getColumn(4).setPreferredWidth(90);
+		tabProdutos.getColumnModel().getColumn(0).setPreferredWidth(110);
+        tabProdutos.getColumnModel().getColumn(1).setPreferredWidth(350);
+        tabProdutos.getColumnModel().getColumn(2).setPreferredWidth(241);
+        tabProdutos.getColumnModel().getColumn(3).setPreferredWidth(225);
+        tabProdutos.getColumnModel().getColumn(4).setPreferredWidth(55);
         tabProdutos.getColumnModel().getColumn(5).setPreferredWidth(90);
         tabProdutos.getColumnModel().getColumn(6).setPreferredWidth(90);
 	}
@@ -89,12 +77,39 @@ public class ProdutoTela extends JFrame {
 		contentPane.add(scrollProdutos);		
 		
 		JComboBox comboTipoPesquisa = new JComboBox();
+		comboTipoPesquisa.setModel(new DefaultComboBoxModel(new String[] {"Descri\u00E7\u00E3o", "Fornecedor", "C\u00F3digo", "Marca", "Setor"}));
 		comboTipoPesquisa.setBounds(10, 11, 155, 32);
 		contentPane.add(comboTipoPesquisa);
 		
-		textField = new JTextField();
-		textField.setBounds(197, 12, 977, 32);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textPesquisa = new JTextField();
+		textPesquisa.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				ControleProduto cp = new ControleProduto();
+				String opcao = (String) comboTipoPesquisa.getSelectedItem();
+				tableModelProduto.receberListaDeProdutos(cp.pesquisa(textPesquisa.getText(), opcao));				
+			}
+		});
+		textPesquisa.setBounds(197, 12, 977, 32);
+		contentPane.add(textPesquisa);
+		textPesquisa.setColumns(10);
+		
+		JButton btnNovoProduto = new JButton("Novo Produto");
+		btnNovoProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ProdutoNovo frame = new ProdutoNovo();
+				frame.setVisible(true);
+			}
+		});
+		btnNovoProduto.setBounds(1019, 718, 155, 32);
+		contentPane.add(btnNovoProduto);
+		
+		JButton btnExcluirProduto = new JButton("Excluir");
+		btnExcluirProduto.setBounds(163, 718, 143, 32);
+		contentPane.add(btnExcluirProduto);
+		
+		JButton btnNewButton = new JButton("Editar");
+		btnNewButton.setBounds(10, 718, 143, 32);
+		contentPane.add(btnNewButton);
 	}
 }
