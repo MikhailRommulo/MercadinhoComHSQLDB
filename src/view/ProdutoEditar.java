@@ -2,13 +2,22 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import control.ControleProduto;
+import model.Fornecedor;
+import model.Produto;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProdutoEditar extends JDialog {
 
@@ -34,6 +43,21 @@ public class ProdutoEditar extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void receberDados(Produto p) {
+		textCodigo.setText(p.getCodigo());
+		textDescricao.setText(p.getDescricao());
+		textMarca.setText(p.getMarca());
+		textSetor.setText(p.getSetor());
+		textFornecedor.setText(p.getFornecedor().getCNPJ());
+		textPreco.setText(String.valueOf(p.getPreco()));
+		LocalDateTime data = p.getValidade();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String validade = dtf.format(data);
+		textDia.setText(validade.substring(0, 2));
+		textMes.setText(validade.substring(3,5));
+		textAno.setText(validade.substring(6,10));
 	}
 
 	/**
@@ -137,7 +161,7 @@ public class ProdutoEditar extends JDialog {
 		contentPanel.add(lblAno);
 		
 		textAno = new JTextField();
-		textAno.setBounds(292, 167, 30, 20);
+		textAno.setBounds(292, 167, 40, 20);
 		contentPanel.add(textAno);
 		textAno.setColumns(10);
 		{
@@ -146,6 +170,28 @@ public class ProdutoEditar extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						Produto produto = new Produto();
+						produto.setCodigo(textCodigo.getText());
+						produto.setDescricao(textDescricao.getText());
+						produto.setMarca(textMarca.getText());
+						produto.setSetor(textSetor.getText());
+						produto.setPreco(Double.parseDouble(textPreco.getText()));
+						
+						Fornecedor f = new Fornecedor();
+						f.setCNPJ(textFornecedor.getText());
+						produto.setFornecedor(f);
+						
+						String data = textAno.getText()+"-"+textMes.getText()+"-"+textDia.getText()+" 00:00";
+						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+						LocalDateTime validade = LocalDateTime.parse(data, dtf);
+						produto.setValidade(validade);
+						
+						ControleProduto cp = new ControleProduto();
+						cp.editar(produto);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

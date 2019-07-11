@@ -105,10 +105,23 @@ public class ProdutoTela extends JFrame {
 		contentPane.add(btnNovoProduto);
 		
 		JButton btnExcluirProduto = new JButton("Excluir");
+		btnExcluirProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				ControleProduto cp = new ControleProduto();
+				cp.excluir(tableModelProduto.pegarProduto(tabProdutos.getSelectedRow()));
+				tableModelProduto.removerProduto(tabProdutos.getSelectedRow());
+			}
+		});
 		btnExcluirProduto.setBounds(163, 718, 143, 32);
 		contentPane.add(btnExcluirProduto);
 		
 		JButton btnNewButton = new JButton("Editar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ControleProduto cp = new ControleProduto();
+				cp.receberProduto(tableModelProduto.pegarProduto(tabProdutos.getSelectedRow()));
+			}
+		});
 		btnNewButton.setBounds(10, 718, 143, 32);
 		contentPane.add(btnNewButton);
 	}

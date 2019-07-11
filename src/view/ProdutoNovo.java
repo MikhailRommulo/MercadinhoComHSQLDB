@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.ControleProduto;
+import model.Fornecedor;
 import model.Produto;
 
 import javax.swing.JLabel;
@@ -165,7 +166,10 @@ public class ProdutoNovo extends JDialog {
 						produto.setMarca(textMarca.getText());
 						produto.setSetor(textSetor.getText());
 						produto.setPreco(Double.parseDouble(textPreco.getText()));
-						produto.getFornecedor().setCNPJ(textFornecedor.getText() );
+						
+						Fornecedor f = new Fornecedor();
+						f.setCNPJ(textFornecedor.getText());
+						produto.setFornecedor(f);
 						
 						String data = textAno.getText()+"-"+textMes.getText()+"-"+textDia.getText()+" 00:00";
 						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
