@@ -8,7 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.ControleEstoque;
+import control.ControleProduto;
 import model.Produto;
 
 import javax.swing.JLabel;
@@ -172,8 +172,8 @@ public class ProdutoNovo extends JDialog {
 						LocalDateTime validade = LocalDateTime.parse(data, dtf);
 						produto.setValidade(validade);
 						
-						ControleEstoque ce = new ControleEstoque();
-						ce.novoProduto(produto);
+						ControleProduto cp = new ControleProduto();
+						cp.novoProduto(produto);
 						
 					}
 				});

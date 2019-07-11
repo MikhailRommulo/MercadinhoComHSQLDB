@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import model.Fornecedor;
 import model.Produto;
 import model.connection.ConnectionFactory;
 
@@ -79,6 +80,11 @@ public class ProdutoDAO {
 				p.setMarca(rs.getString("MARCA"));
 				p.setSetor(rs.getString("SETOR"));
 				p.setPreco(rs.getDouble("PRECO"));
+				
+				FornecedorDAO fd = new FornecedorDAO();
+				Fornecedor f = fd.readUnique(rs.getString("FORNECEDOR"), connection);
+				
+				p.setFornecedor(f);
 				//Convertendo timestamp para LocalDateTime
 				Timestamp validade = rs.getTimestamp("VALIDADE");
 				p.setValidade(validade.toLocalDateTime());
@@ -143,17 +149,22 @@ public class ProdutoDAO {
 	public Produto buscarProduto(String codigo) throws SQLException {
 		
 		Connection connection = ConnectionFactory.conectar();
-		String sql = "select * from produtos where codigo =" + "'" +codigo+"'" ;
+		String sql = "select * from produtos where codigo = ?" ;
 		Produto p = new Produto();
 		try {
 			stmt = connection.prepareStatement(sql);
+			stmt.setString(1, codigo);
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			p.setCodigo(rs.getString("CODIGO"));
 			p.setDescricao(rs.getString("DESCRICAO"));
 			p.setMarca(rs.getString("MARCA"));
 			p.setSetor(rs.getString("SETOR"));
-			p.getFornecedor().setCNPJ(rs.getString("FORNECEDOR"));
+			
+			FornecedorDAO fd = new FornecedorDAO();
+			Fornecedor f = fd.readUnique(rs.getString("FORNECEDOR"), connection);			
+			p.setFornecedor(f);
+			
 			p.setPreco(rs.getDouble("PRECO"));
 			//Convertendo timestamp para LocalDateTime
 			Timestamp validade = rs.getTimestamp("VALIDADE");			

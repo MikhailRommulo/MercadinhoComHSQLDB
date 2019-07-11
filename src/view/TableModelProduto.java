@@ -55,7 +55,7 @@ public class TableModelProduto extends AbstractTableModel {
 			case 1:
 				return this.listaDeProdutos.get(rowIndex).getDescricao();
 			case 2:
-				return "teste";
+				return this.listaDeProdutos.get(rowIndex).getFornecedor().getNomeFantasia();
 			case 3:
 				return this.listaDeProdutos.get(rowIndex).getMarca();
 			case 4:
