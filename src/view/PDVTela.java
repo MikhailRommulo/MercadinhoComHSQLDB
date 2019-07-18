@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
@@ -71,10 +72,10 @@ public class PDVTela {
 	
 	private void ajustarLarguraColunas() {
 		tabPdv.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		tabPdv.getColumnModel().getColumn(0).setPreferredWidth(380);
-        tabPdv.getColumnModel().getColumn(1).setPreferredWidth(60);
-        tabPdv.getColumnModel().getColumn(2).setPreferredWidth(90);
-        tabPdv.getColumnModel().getColumn(3).setPreferredWidth(60);
+		tabPdv.getColumnModel().getColumn(0).setPreferredWidth(370);
+        tabPdv.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tabPdv.getColumnModel().getColumn(2).setPreferredWidth(75);
+        tabPdv.getColumnModel().getColumn(3).setPreferredWidth(102);
 	}
 	
 
@@ -119,7 +120,7 @@ public class PDVTela {
 		
 		textTotDesconto = new JTextField();
 		textTotDesconto.setEditable(false);
-		textTotDesconto.setBounds(115, 709, 86, 20);
+		textTotDesconto.setBounds(115, 709, 100, 20);
 		textTotDesconto.setFont(new Font("Arial", Font.PLAIN, 16));
 		textTotDesconto.setColumns(10);
 		
@@ -129,7 +130,7 @@ public class PDVTela {
 		
 		textTotCompra = new JTextField();
 		textTotCompra.setEditable(false);
-		textTotCompra.setBounds(299, 709, 86, 20);
+		textTotCompra.setBounds(299, 709, 100, 20);
 		textTotCompra.setFont(new Font("Arial", Font.PLAIN, 16));
 		textTotCompra.setColumns(10);
 		
@@ -170,7 +171,7 @@ public class PDVTela {
 					}
 					textResultadoProduto.setText(controle.descricaoProduto());
 					tableModelItem.receberListaDeItens(controle.getItens());
-					textTotCompra.setText(String.valueOf(controle.totalNota()));					
+					textTotCompra.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(controle.totalNota())));					
 				}
 				
 			}
@@ -245,7 +246,7 @@ public class PDVTela {
         	public void actionPerformed(ActionEvent arg0) {
         		tableModelItem.removerItem(tabPdv.getSelectedRow());
         		controle.setItens(tableModelItem.pegarListaDeItens());
-        		textTotCompra.setText(String.valueOf(controle.totalNota()));
+        		textTotCompra.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(controle.totalNota())));
         	}
         });
         btnR.setBounds(518, 11, 122, 23);
@@ -257,7 +258,7 @@ public class PDVTela {
         		String quantidade = JOptionPane.showInputDialog("Editar quantidade");
         		controle.getItens().get(tabPdv.getSelectedRow()).setQuantidade(Integer.parseInt(quantidade));
         		tableModelItem.receberListaDeItens(controle.getItens());
-        		textTotCompra.setText(String.valueOf(controle.totalNota()));
+        		textTotCompra.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(controle.totalNota())));
         	}
         });
         btnEditarQuantidade.setBounds(334, 11, 174, 23);
