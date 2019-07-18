@@ -53,12 +53,10 @@ public class ProdutoTela extends JFrame {
 	private void ajustarLarguraColunas() {
 		tabProdutos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tabProdutos.getColumnModel().getColumn(0).setPreferredWidth(110);
-        tabProdutos.getColumnModel().getColumn(1).setPreferredWidth(350);
+        tabProdutos.getColumnModel().getColumn(1).setPreferredWidth(530);
         tabProdutos.getColumnModel().getColumn(2).setPreferredWidth(241);
         tabProdutos.getColumnModel().getColumn(3).setPreferredWidth(225);
         tabProdutos.getColumnModel().getColumn(4).setPreferredWidth(55);
-        tabProdutos.getColumnModel().getColumn(5).setPreferredWidth(90);
-        tabProdutos.getColumnModel().getColumn(6).setPreferredWidth(90);
 	}
 	
 	public void initialize() {
