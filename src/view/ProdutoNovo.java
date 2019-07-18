@@ -27,10 +27,6 @@ public class ProdutoNovo extends JDialog {
 	private JTextField textMarca;
 	private JTextField textSetor;
 	private JTextField textPreco;
-	private JTextField textDia;
-	private JTextField textMes;
-	private JTextField textAno;
-	private JTextField textFornecedor;
 
 	/**
 	 * Launch the application.
@@ -49,7 +45,7 @@ public class ProdutoNovo extends JDialog {
 	 * Create the dialog.
 	 */
 	public ProdutoNovo() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 242);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -89,7 +85,7 @@ public class ProdutoNovo extends JDialog {
 		textSetor.setColumns(10);
 		
 		textPreco = new JTextField();
-		textPreco.setBounds(86, 160, 174, 20);
+		textPreco.setBounds(86, 132, 174, 20);
 		contentPanel.add(textPreco);
 		textPreco.setColumns(10);
 		
@@ -98,60 +94,12 @@ public class ProdutoNovo extends JDialog {
 		contentPanel.add(lblSetor);
 		
 		JLabel lblPreco = new JLabel("Pre\u00E7o:");
-		lblPreco.setBounds(10, 163, 46, 14);
+		lblPreco.setBounds(10, 135, 46, 14);
 		contentPanel.add(lblPreco);
-		
-		JLabel lblValidade = new JLabel("Validade:");
-		lblValidade.setBounds(10, 188, 66, 14);
-		contentPanel.add(lblValidade);
-		
-		JLabel lblDia = new JLabel("Dia");
-		lblDia.setBounds(86, 188, 23, 14);
-		contentPanel.add(lblDia);
-		
-		textDia = new JTextField();
-		textDia.setBounds(119, 185, 30, 20);
-		contentPanel.add(textDia);
-		textDia.setColumns(10);
-		
-		JLabel lblMs = new JLabel("M\u00EAs");
-		lblMs.setBounds(180, 188, 33, 14);
-		contentPanel.add(lblMs);
-		
-		textMes = new JTextField();
-		textMes.setBounds(218, 185, 30, 20);
-		contentPanel.add(textMes);
-		textMes.setColumns(10);
 		
 		JLabel label = new JLabel("/");
 		label.setBounds(227, 167, -12, 14);
 		contentPanel.add(label);
-		
-		JLabel label_1 = new JLabel("/");
-		label_1.setBounds(159, 188, 11, 14);
-		contentPanel.add(label_1);
-		
-		JLabel label_2 = new JLabel("/");
-		label_2.setBounds(257, 188, 11, 14);
-		contentPanel.add(label_2);
-		
-		JLabel lblAno = new JLabel("Ano");
-		lblAno.setBounds(278, 188, 23, 14);
-		contentPanel.add(lblAno);
-		
-		textAno = new JTextField();
-		textAno.setBounds(311, 185, 56, 20);
-		contentPanel.add(textAno);
-		textAno.setColumns(10);
-		
-		JLabel lblFornecedor = new JLabel("Fornecedor:");
-		lblFornecedor.setBounds(10, 129, 77, 14);
-		contentPanel.add(lblFornecedor);
-		
-		textFornecedor = new JTextField();
-		textFornecedor.setBounds(86, 129, 174, 20);
-		contentPanel.add(textFornecedor);
-		textFornecedor.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -166,15 +114,6 @@ public class ProdutoNovo extends JDialog {
 						produto.setMarca(textMarca.getText());
 						produto.setSetor(textSetor.getText());
 						produto.setPreco(Double.parseDouble(textPreco.getText()));
-						
-						Fornecedor f = new Fornecedor();
-						f.setCNPJ(textFornecedor.getText());
-						produto.setFornecedor(f);
-						
-						String data = textAno.getText()+"-"+textMes.getText()+"-"+textDia.getText()+" 00:00";
-						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-						LocalDateTime validade = LocalDateTime.parse(data, dtf);
-						produto.setValidade(validade);
 						
 						ControleProduto cp = new ControleProduto();
 						cp.novoProduto(produto);

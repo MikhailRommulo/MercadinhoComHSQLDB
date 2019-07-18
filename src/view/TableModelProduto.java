@@ -13,7 +13,7 @@ import model.Produto;
 public class TableModelProduto extends AbstractTableModel {
 	
 	private ArrayList<Produto> listaDeProdutos;
-	private String[] colunas = {"Código","Descrição","Fornecedor","Marca","Preço","Setor","Validade"};
+	private String[] colunas = {"Código","Descrição","Marca","Setor","Preço"};
 	
 	public TableModelProduto() {
 		this.listaDeProdutos = new ArrayList<>();
@@ -55,18 +55,11 @@ public class TableModelProduto extends AbstractTableModel {
 			case 1:
 				return this.listaDeProdutos.get(rowIndex).getDescricao();
 			case 2:
-				return this.listaDeProdutos.get(rowIndex).getFornecedor().getNomeFantasia();
-			case 3:
 				return this.listaDeProdutos.get(rowIndex).getMarca();
-			case 4:
-				return NumberFormat.getCurrencyInstance().format(this.listaDeProdutos.get(rowIndex).getPreco());
-			case 5:
+			case 3:
 				return this.listaDeProdutos.get(rowIndex).getSetor();
-			case 6:
-				LocalDateTime data = this.listaDeProdutos.get(rowIndex).getValidade();
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				String validade = dtf.format(data);
-				return validade;
+			case 4:
+				return NumberFormat.getCurrencyInstance().format(this.listaDeProdutos.get(rowIndex).getPreco());			
 			default:
 				return this.listaDeProdutos.get(rowIndex);
 		}

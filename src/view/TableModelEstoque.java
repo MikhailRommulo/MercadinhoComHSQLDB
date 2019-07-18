@@ -35,7 +35,7 @@ public class TableModelEstoque extends AbstractTableModel{
 			case 2:
 				return this.listaDeItensEstoque.get(rowIndex).getProduto().getSetor();
 			case 3:
-				return this.listaDeItensEstoque.get(rowIndex).getProduto().getValidade();
+				return "Teste";
 			case 4:
 				return this.listaDeItensEstoque.get(rowIndex).getFornecedor().getNomeFantasia();
 			case 5:

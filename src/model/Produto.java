@@ -1,15 +1,11 @@
 package model;
 
-import java.time.LocalDateTime;
-
 public class Produto {
 	private String codigo;
 	private String descricao;
 	private String marca;
 	private String setor;
-	private Fornecedor fornecedor;
 	private double preco;
-	private LocalDateTime validade;
 	
 	public String getCodigo() {
 		return codigo;
@@ -41,17 +37,4 @@ public class Produto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	public LocalDateTime getValidade() {
-		return validade;
-	}
-	public void setValidade(LocalDateTime validade) {
-		this.validade = validade;
-	}
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}	
-	
 }

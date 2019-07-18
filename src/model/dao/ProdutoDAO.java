@@ -27,12 +27,7 @@ public class ProdutoDAO {
 			stmt.setString(2, p.getDescricao());
 			stmt.setString(3, p.getMarca());
 			stmt.setString(4, p.getSetor());
-			stmt.setString(5, p.getFornecedor().getCNPJ());
 			stmt.setDouble(6, p.getPreco());
-		
-			LocalDateTime validade = p.getValidade();
-			Timestamp data = Timestamp.valueOf(validade);
-			stmt.setTimestamp(7, data);
 		
 			stmt.executeUpdate();
 		}catch(SQLException ex) {
@@ -81,13 +76,6 @@ public class ProdutoDAO {
 				p.setSetor(rs.getString("SETOR"));
 				p.setPreco(rs.getDouble("PRECO"));
 				
-				FornecedorDAO fd = new FornecedorDAO();
-				Fornecedor f = fd.readUnique(rs.getString("FORNECEDOR"), connection);
-				
-				p.setFornecedor(f);
-				//Convertendo timestamp para LocalDateTime
-				Timestamp validade = rs.getTimestamp("VALIDADE");
-				p.setValidade(validade.toLocalDateTime());
 				produtos.add(p);
 			}
 		}catch(SQLException e) {
@@ -101,22 +89,17 @@ public class ProdutoDAO {
 	public void update(Produto p) throws SQLException {
 		
 			Connection connection = ConnectionFactory.conectar();
-			String sql = "UPDATE produtos SET codigo = ?, descricao = ?, marca = ?, setor = ?, preco = ?, fornecedor = ?, validade = ? WHERE codigo = ?";
+			String sql = "UPDATE produtos SET descricao = ?, marca = ?, setor = ?, preco = ? WHERE codigo = ?";
 			
 		try {
 			stmt = connection.prepareStatement(sql);
-			stmt.setString(1, p.getCodigo());
-			stmt.setString(2, p.getDescricao());
-			stmt.setString(3, p.getMarca());
-			stmt.setString(4, p.getSetor());
-			stmt.setDouble(5, p.getPreco());
-			stmt.setString(6, p.getFornecedor().getCNPJ());
-		
-			LocalDateTime validade = p.getValidade();
-			Timestamp data = Timestamp.valueOf(validade);
-			stmt.setTimestamp(7, data);
-		
-			stmt.setString(8, p.getCodigo());
+			
+			stmt.setString(1, p.getDescricao());
+			stmt.setString(2, p.getMarca());
+			stmt.setString(3, p.getSetor());
+			stmt.setDouble(4, p.getPreco());
+			
+			stmt.setString(5, p.getCodigo());
 			
 			stmt.executeUpdate();
 			
@@ -160,15 +143,7 @@ public class ProdutoDAO {
 			p.setDescricao(rs.getString("DESCRICAO"));
 			p.setMarca(rs.getString("MARCA"));
 			p.setSetor(rs.getString("SETOR"));
-			
-			FornecedorDAO fd = new FornecedorDAO();
-			Fornecedor f = fd.readUnique(rs.getString("FORNECEDOR"), connection);			
-			p.setFornecedor(f);
-			
-			p.setPreco(rs.getDouble("PRECO"));
-			//Convertendo timestamp para LocalDateTime
-			Timestamp validade = rs.getTimestamp("VALIDADE");			
-			p.setValidade(validade.toLocalDateTime());			
+			p.setPreco(rs.getDouble("PRECO"));			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

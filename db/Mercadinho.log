@@ -1,0 +1,10 @@
+/*C2*/SET SCHEMA PUBLIC
+alter table produtos drop fornecedor
+alter table produtos drop validade
+alter table produtos add primary key(codigo)
+alter table itemnotaentrada add foreign key(produto) references produtos(codigo)
+alter table itemfornecedor add foreign key(produto) references produtos(codigo)
+alter table itemfornecedor add validade date
+alter table itemfornecedor drop validade
+alter table itemfornecedor add validade date not null
+DISCONNECT
