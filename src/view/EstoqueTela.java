@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
 
 public class EstoqueTela extends JFrame {
 
@@ -48,12 +49,11 @@ public class EstoqueTela extends JFrame {
 	
 	private void ajustarLarguraColunas() {
 		tableProdutos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		tableProdutos.getColumnModel().getColumn(0).setPreferredWidth(60);
-        tableProdutos.getColumnModel().getColumn(1).setPreferredWidth(60);
-        tableProdutos.getColumnModel().getColumn(2).setPreferredWidth(90);
-        tableProdutos.getColumnModel().getColumn(3).setPreferredWidth(60);
+		tableProdutos.getColumnModel().getColumn(0).setPreferredWidth(90);
+        tableProdutos.getColumnModel().getColumn(1).setPreferredWidth(585);
+        tableProdutos.getColumnModel().getColumn(2).setPreferredWidth(200);
+        tableProdutos.getColumnModel().getColumn(3).setPreferredWidth(201);
         tableProdutos.getColumnModel().getColumn(4).setPreferredWidth(90);
-        tableProdutos.getColumnModel().getColumn(5).setPreferredWidth(90);
 	}
 
 	/**
@@ -68,6 +68,7 @@ public class EstoqueTela extends JFrame {
 		contentPane.setLayout(null);
 		
 		JComboBox comboTipoDePesquisa = new JComboBox();
+		comboTipoDePesquisa.setModel(new DefaultComboBoxModel(new String[] {"C\u00F3digo", "Produto", "Setor", "Fornecedor"}));
 		comboTipoDePesquisa.setBounds(5, 5, 220, 31);
 		contentPane.add(comboTipoDePesquisa);
 		

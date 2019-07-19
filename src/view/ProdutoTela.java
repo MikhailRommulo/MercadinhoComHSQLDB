@@ -75,7 +75,7 @@ public class ProdutoTela extends JFrame {
 		contentPane.add(scrollProdutos);		
 		
 		JComboBox comboTipoPesquisa = new JComboBox();
-		comboTipoPesquisa.setModel(new DefaultComboBoxModel(new String[] {"Descri\u00E7\u00E3o", "Fornecedor", "C\u00F3digo", "Marca", "Setor"}));
+		comboTipoPesquisa.setModel(new DefaultComboBoxModel(new String[] {"Descri\u00E7\u00E3o", "C\u00F3digo", "Marca", "Setor"}));
 		comboTipoPesquisa.setBounds(10, 11, 155, 32);
 		contentPane.add(comboTipoPesquisa);
 		

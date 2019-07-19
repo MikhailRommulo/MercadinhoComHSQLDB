@@ -1,17 +1,10 @@
 package model;
 
-public class ItemFornecedor {
+public class ItemEstoque {
 	
-	private Fornecedor fornecedor;
 	private Produto produto;
 	private int quantidade;
 	
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
 	public Produto getProduto() {
 		return produto;
 	}
@@ -23,7 +16,6 @@ public class ItemFornecedor {
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
-	}
-	
+	}	
 	
 }

@@ -1,6 +1,6 @@
 package model;
 
-public class Item {
+public class ItemPDV {
 	private Produto produto;
 	private int quantidade;
 	private double subTotal;

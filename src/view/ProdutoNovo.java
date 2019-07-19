@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.ControleProduto;
-import model.Fornecedor;
 import model.Produto;
 
 import javax.swing.JLabel;

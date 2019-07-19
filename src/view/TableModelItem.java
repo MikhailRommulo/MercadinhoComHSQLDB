@@ -6,26 +6,26 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import model.Item;
+import model.ItemPDV;
 
 public class TableModelItem extends AbstractTableModel{
-	private ArrayList<Item> listaDeItens;
+	private ArrayList<ItemPDV> listaDeItens;
 	private String[] colunas = {"Produto","Preço","Quantidade","Total"};
 
 	public TableModelItem() {
 		this.listaDeItens = new ArrayList<>();
 	}
 	
-	public void receberListaDeItens(ArrayList<Item> list) {
+	public void receberListaDeItens(ArrayList<ItemPDV> list) {
 		this.listaDeItens = list;
 		fireTableDataChanged();
 	}
 	
-	public List<Item> pegarListaDeItens(){
+	public List<ItemPDV> pegarListaDeItens(){
 		return this.listaDeItens;
 	}
 	
-	public Item pegarItem(int rowIndex) {
+	public ItemPDV pegarItem(int rowIndex) {
 		return this.listaDeItens.get(rowIndex);
 	}
 	

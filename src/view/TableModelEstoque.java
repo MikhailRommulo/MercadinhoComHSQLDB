@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import model.ItemFornecedor;
+import model.ItemEstoque;
 
 public class TableModelEstoque extends AbstractTableModel{
 	
-	private ArrayList<ItemFornecedor> listaDeItensEstoque;
-	private String[] colunas = {"Código","Produto","Setor","Validade","Fornecedor","Quantidade"};
+	private ArrayList<ItemEstoque> listaDeItensEstoque;
+	private String[] colunas = {"Código","Produto","Marca","Setor","Quantidade"};
 	
 	public TableModelEstoque() {
-		this.listaDeItensEstoque = new ArrayList<ItemFornecedor>();
+		this.listaDeItensEstoque = new ArrayList<ItemEstoque>();
 	}
 	
 	@Override
@@ -33,12 +33,10 @@ public class TableModelEstoque extends AbstractTableModel{
 			case 1:
 				return this.listaDeItensEstoque.get(rowIndex).getProduto().getDescricao();
 			case 2:
-				return this.listaDeItensEstoque.get(rowIndex).getProduto().getSetor();
+				return this.listaDeItensEstoque.get(rowIndex).getProduto().getMarca();
 			case 3:
-				return "Teste";
+				return this.listaDeItensEstoque.get(rowIndex).getProduto().getSetor();			
 			case 4:
-				return this.listaDeItensEstoque.get(rowIndex).getFornecedor().getNomeFantasia();
-			case 5:
 				return this.listaDeItensEstoque.get(rowIndex).getQuantidade();
 			default:
 				return this.listaDeItensEstoque.get(rowIndex);

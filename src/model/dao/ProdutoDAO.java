@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import model.Fornecedor;
 import model.Produto;
 import model.connection.ConnectionFactory;
 
@@ -43,9 +42,6 @@ public class ProdutoDAO {
 		switch(opcao) {
 			case "Descrição":
 				sql="SELECT * FROM produtos WHERE descricao LIKE ?";
-				break;
-			case "Fornecedor":
-				sql="SELECT * FROM produtos WHERE fornecedor LIKE ?";
 				break;
 			case "Código":
 				sql="SELECT * FROM produtos WHERE codigo LIKE ?";

@@ -4,27 +4,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Item;
+import model.ItemPDV;
 import model.Produto;
 import model.dao.ProdutoDAO;
-import view.PDVTela;
 
 public class ControlePDV {
 	
-	private ArrayList<Item> itens = new ArrayList<>();
+	private ArrayList<ItemPDV> itens = new ArrayList<>();
 	private Produto produto;
 	
-	public void setItens(List<Item> list) {
-		this.itens = (ArrayList<Item>) list;
+	public void setItens(List<ItemPDV> list) {
+		this.itens = (ArrayList<ItemPDV>) list;
 	}
 	
 	public void adicionaItem(String codigo) throws SQLException {
 		ProdutoDAO buscar = new ProdutoDAO();
 		Produto produto  = buscar.buscarProduto(codigo);
 		this.produto = produto;
-		Item item = new Item();
-		item.setProduto(produto);
-		armazenaItens(item);
+		ItemPDV ItemPDV = new ItemPDV();
+		ItemPDV.setProduto(produto);
+		armazenaItens(ItemPDV);
 		
 	}
 	
@@ -33,29 +32,29 @@ public class ControlePDV {
 	}
 	
 	
-	private void armazenaItens(Item item) {
+	private void armazenaItens(ItemPDV ItemPDV) {
 		boolean podeEstarNalista = true;
 		if(itens.isEmpty()) {
-			item.setQuantidade(1);
-			this.itens.add(item);
+			ItemPDV.setQuantidade(1);
+			this.itens.add(ItemPDV);
 		}else {			
-			for(Item i: itens) {				
-				if(item.getProduto().getCodigo().equals(i.getProduto().getCodigo())) {					
+			for(ItemPDV i: itens) {				
+				if(ItemPDV.getProduto().getCodigo().equals(i.getProduto().getCodigo())) {					
 					podeEstarNalista = false;
-					mudarQuantidade(item);
+					mudarQuantidade(ItemPDV);
 					break;
 				}
 			}
 			if(podeEstarNalista) {
-				item.setQuantidade(1);
-				this.itens.add(item);
+				ItemPDV.setQuantidade(1);
+				this.itens.add(ItemPDV);
 			}
 		}
 	}
 	
-	private void mudarQuantidade(Item item) {
+	private void mudarQuantidade(ItemPDV ItemPDV) {
 		for(int i = 0; i<itens.size();i++) {
-			if(item.getProduto().getCodigo().equals(itens.get(i).getProduto().getCodigo())) {
+			if(ItemPDV.getProduto().getCodigo().equals(itens.get(i).getProduto().getCodigo())) {
 				itens.get(i).setQuantidade(itens.get(i).getQuantidade()+1);
 			}
 		}
@@ -69,7 +68,7 @@ public class ControlePDV {
 		return total;
 	}
 	
-	public ArrayList<Item> getItens() {
+	public ArrayList<ItemPDV> getItens() {
 		return this.itens;
 	}
 }
