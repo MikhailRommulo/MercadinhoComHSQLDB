@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import model.ItemEstoque;
 import model.Produto;
 import model.connection.ConnectionFactory;
 
@@ -18,7 +19,7 @@ public class ProdutoDAO {
 	public void create(Produto p) throws SQLException {
 		
 		Connection connection = ConnectionFactory.conectar();
-		String sql = "INSERT INTO produtos (codigo,descricao,marca,setor,fornecedor,preco,validade) VALUES(?,?,?,?,?,?,?)" ;
+		String sql = "INSERT INTO produtos (codigo,descricao,marca,setor,preco) VALUES(?,?,?,?,?)" ;
 		
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -26,13 +27,21 @@ public class ProdutoDAO {
 			stmt.setString(2, p.getDescricao());
 			stmt.setString(3, p.getMarca());
 			stmt.setString(4, p.getSetor());
-			stmt.setDouble(6, p.getPreco());
+			stmt.setDouble(5, p.getPreco());
 		
 			stmt.executeUpdate();
 		}catch(SQLException ex) {
 			System.out.println(ex);
 		}finally{
 			ConnectionFactory.fechar();
+			ItemEstoque ie = new ItemEstoque();
+			ie.setProduto(p);
+			ItensEstoqueDAO ied = new ItensEstoqueDAO();
+			try {
+				ied.create(ie);
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
