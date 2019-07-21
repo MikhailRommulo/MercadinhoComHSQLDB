@@ -23,8 +23,9 @@ public class ControlePDV {
 		this.produto = produto;
 		ItemPDV ItemPDV = new ItemPDV();
 		ItemPDV.setProduto(produto);
-		armazenaItens(ItemPDV);
-		
+		if(ItemPDV.getProduto().getCodigo() != null) {
+			armazenaItens(ItemPDV);
+		}
 	}
 	
 	public String descricaoProduto() {

@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.ItemEstoque;
 import model.Produto;
 import model.connection.ConnectionFactory;
@@ -151,8 +153,7 @@ public class ProdutoDAO {
 			p.setPreco(rs.getDouble("PRECO"));			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Produto não encontrado!");
 		}finally {
 			ConnectionFactory.fechar();
 		}

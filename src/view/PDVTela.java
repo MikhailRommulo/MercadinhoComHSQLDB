@@ -143,7 +143,12 @@ public class PDVTela {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				
-				if(textEntradaCodigo.getText().length() == 13) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					try {
 						controle.adicionaItem(textEntradaCodigo.getText());
 					} catch (SQLException e1) {
@@ -152,19 +157,14 @@ public class PDVTela {
 					}
 					textResultadoProduto.setText(controle.descricaoProduto());
 					tableModelItem.receberListaDeItens(controle.getItens());
-					textTotCompra.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(controle.totalNota())));					
+					textTotCompra.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(controle.totalNota())));
+					textEntradaCodigo.setText("");
 				}
-				
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void keyTyped(KeyEvent e) {
+				
 				String caracteres="0987654321";
 			       if((!caracteres.contains(e.getKeyChar()+""))||(textEntradaCodigo.getText().length() >= 13 )){
 			              e.consume();
