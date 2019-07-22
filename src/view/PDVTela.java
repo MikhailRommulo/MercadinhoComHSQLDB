@@ -41,6 +41,8 @@ public class PDVTela {
 	private JTextField textTotCompra;
 	private JTextField textEntradaCodigo;
 	private JTextField textResultadoProduto;
+	private JTextField textTroco;
+	private double total;
 
 	/**
 	 * Launch the application.
@@ -65,6 +67,36 @@ public class PDVTela {
 		initialize();
 		this.tableModelItem = new TableModelItem();
         this.tabPdv.setModel(tableModelItem);
+        
+        JButton btnValorRecebido = new JButton("Valor Recebido");
+        btnValorRecebido.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		String valor = JOptionPane.showInputDialog("Valor recebido?");
+        		double troco = Double.parseDouble(valor);
+        		if(troco >= total) {
+        			double resultadoTroco = troco - total;
+            		textTroco.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(resultadoTroco)));
+        		}else {
+        			double pagamentoFaltando = total - troco;
+        			JOptionPane.showMessageDialog(null,"Faltam "+NumberFormat.getCurrencyInstance().format(pagamentoFaltando)+" para completar o pagamento!");
+        		}
+        	}
+        });
+        btnValorRecebido.setFont(new Font("Arial", Font.BOLD, 16));
+        btnValorRecebido.setBounds(804, 687, 180, 40);
+        frame.getContentPane().add(btnValorRecebido);
+        
+        JLabel lblTroco = new JLabel("Troco:");
+        lblTroco.setFont(new Font("Arial", Font.BOLD, 16));
+        lblTroco.setBounds(20, 725, 63, 25);
+        frame.getContentPane().add(lblTroco);
+        
+        textTroco = new JTextField();
+        textTroco.setFont(new Font("Arial", Font.PLAIN, 16));
+        textTroco.setEditable(false);
+        textTroco.setBounds(76, 723, 130, 25);
+        frame.getContentPane().add(textTroco);
+        textTroco.setColumns(10);
         ajustarLarguraColunas();
 	}
 	
@@ -118,11 +150,16 @@ public class PDVTela {
 		
 		textTotCompra = new JTextField();
 		textTotCompra.setEditable(false);
-		textTotCompra.setBounds(76, 687, 130, 20);
+		textTotCompra.setBounds(76, 687, 130, 25);
 		textTotCompra.setFont(new Font("Arial", Font.PLAIN, 16));
 		textTotCompra.setColumns(10);
 		
 		JButton btnConfirmar = new JButton("Confirmar compra");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnConfirmar.setBounds(994, 687, 180, 40);
 		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 16));
 		
@@ -158,6 +195,7 @@ public class PDVTela {
 					textResultadoProduto.setText(controle.descricaoProduto());
 					tableModelItem.receberListaDeItens(controle.getItens());
 					textTotCompra.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(controle.totalNota())));
+					total = controle.totalNota();
 					textEntradaCodigo.setText("");
 				}
 			}
@@ -202,6 +240,7 @@ public class PDVTela {
         		tableModelItem.removerItem(tabPdv.getSelectedRow());
         		controle.setItens(tableModelItem.pegarListaDeItens());
         		textTotCompra.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(controle.totalNota())));
+        		total = controle.totalNota();
         	}
         });
         btnR.setBounds(1032, 11, 122, 23);
@@ -214,6 +253,7 @@ public class PDVTela {
         		controle.getItens().get(tabPdv.getSelectedRow()).setQuantidade(Integer.parseInt(quantidade));
         		tableModelItem.receberListaDeItens(controle.getItens());
         		textTotCompra.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(controle.totalNota())));
+        		total = controle.totalNota();
         	}
         });
         btnEditarQuantidade.setBounds(848, 11, 174, 23);
