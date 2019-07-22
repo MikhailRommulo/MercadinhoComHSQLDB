@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class EstoqueTela extends JFrame {
 
@@ -48,6 +50,56 @@ public class EstoqueTela extends JFrame {
 		initialize();
 		this.tableModelEstoque = new TableModelEstoque();
 		this.tabProdutos.setModel(tableModelEstoque);
+		
+		JButton btnZerarQuantidade = new JButton("Zerar Quantidade");
+		btnZerarQuantidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ItemEstoque ie = tableModelEstoque.pegarItemEstoque(tabProdutos.getSelectedRow());
+				ControleEstoque ce = new ControleEstoque();
+				ce.zerarQuantidade(ie);
+			}
+		});
+		btnZerarQuantidade.setBounds(1031, 667, 143, 32);
+		contentPane.add(btnZerarQuantidade);
+		
+		JButton btnEditarQuantidade = new JButton("Editar Quantidade");
+		btnEditarQuantidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String valor = JOptionPane.showInputDialog("Quantidade para o produto?");
+				int quantidade = Integer.parseInt(valor);
+				ItemEstoque ie = tableModelEstoque.pegarItemEstoque(tabProdutos.getSelectedRow());
+				ControleEstoque ce = new ControleEstoque();
+				ce.editarQuantidade(ie, quantidade);
+			}
+		});
+		btnEditarQuantidade.setBounds(880, 667, 143, 33);
+		contentPane.add(btnEditarQuantidade);
+		
+		JButton btnAumentarQuantidade = new JButton("+ Quantidade");
+		btnAumentarQuantidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String valor = JOptionPane.showInputDialog("Quantidade para adicionar?");
+				int quantidade = Integer.parseInt(valor);
+				ItemEstoque ie = tableModelEstoque.pegarItemEstoque(tabProdutos.getSelectedRow());
+				ControleEstoque ce = new ControleEstoque();
+				ce.aumentarQuantidade(ie, quantidade);
+			}
+		});
+		btnAumentarQuantidade.setBounds(880, 710, 143, 32);
+		contentPane.add(btnAumentarQuantidade);
+		
+		JButton btnDiminuirQuantidade = new JButton("- Quantidade");
+		btnDiminuirQuantidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String valor = JOptionPane.showInputDialog("Quantidade para subtrair?");
+				int quantidade = Integer.parseInt(valor);
+				ItemEstoque ie = tableModelEstoque.pegarItemEstoque(tabProdutos.getSelectedRow());
+				ControleEstoque ce = new ControleEstoque();
+				ce.diminuirQuantidade(ie, quantidade);
+			}
+		});
+		btnDiminuirQuantidade.setBounds(1031, 710, 143, 32);
+		contentPane.add(btnDiminuirQuantidade);
 		ajustarLarguraColunas();		
 	}
 	
@@ -73,7 +125,7 @@ public class EstoqueTela extends JFrame {
 		tabProdutos.setRowHeight(30);
 		
 		JScrollPane scrollProdutos = new JScrollPane(tabProdutos);
-		scrollProdutos.setBounds(10, 54, 1164, 653);
+		scrollProdutos.setBounds(10, 54, 1164, 597);
 		contentPane.add(scrollProdutos);		
 		
 		JComboBox comboTipoPesquisa = new JComboBox();
@@ -101,10 +153,10 @@ public class EstoqueTela extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnNovoProduto.setBounds(1019, 718, 155, 32);
+		btnNovoProduto.setBounds(10, 705, 143, 32);
 		contentPane.add(btnNovoProduto);
 		
-		JButton btnExcluirProduto = new JButton("Excluir");
+		JButton btnExcluirProduto = new JButton("Excluir Produto");
 		btnExcluirProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				ControleEstoque ce = new ControleEstoque();
@@ -112,10 +164,10 @@ public class EstoqueTela extends JFrame {
 				tableModelEstoque.removerItemEstoque(tabProdutos.getSelectedRow());
 			}
 		});
-		btnExcluirProduto.setBounds(163, 718, 143, 32);
+		btnExcluirProduto.setBounds(163, 662, 143, 32);
 		contentPane.add(btnExcluirProduto);
 		
-		JButton btnNewButton = new JButton("Editar");
+		JButton btnNewButton = new JButton("Editar Produto");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ControleProduto cp = new ControleProduto();
@@ -123,7 +175,7 @@ public class EstoqueTela extends JFrame {
 				cp.receberProduto(ie.getProduto());
 			}
 		});
-		btnNewButton.setBounds(10, 718, 143, 32);
+		btnNewButton.setBounds(10, 662, 143, 32);
 		contentPane.add(btnNewButton);
 	}
 }

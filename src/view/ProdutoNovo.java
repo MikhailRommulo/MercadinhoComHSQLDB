@@ -99,6 +99,10 @@ public class ProdutoNovo extends JDialog {
 		JLabel label = new JLabel("/");
 		label.setBounds(227, 167, -12, 14);
 		contentPanel.add(label);
+		
+		JLabel lblusePontoPara = new JLabel("(use ponto para os centavos)");
+		lblusePontoPara.setBounds(270, 135, 154, 14);
+		contentPanel.add(lblusePontoPara);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

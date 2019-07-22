@@ -104,6 +104,10 @@ public class ProdutoEditar extends JDialog {
 		textPreco.setBounds(80, 114, 178, 20);
 		contentPanel.add(textPreco);
 		textPreco.setColumns(10);
+		
+		JLabel lblusePontoPara = new JLabel("(use ponto para os centavos)");
+		lblusePontoPara.setBounds(268, 117, 156, 14);
+		contentPanel.add(lblusePontoPara);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -128,7 +132,12 @@ public class ProdutoEditar extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
