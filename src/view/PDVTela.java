@@ -157,7 +157,12 @@ public class PDVTela {
 		JButton btnConfirmar = new JButton("Confirmar compra");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				ControlePDV cp = new ControlePDV();
+				cp.confirmarCompra(tableModelItem.pegarListaDeItens());
+				textTotCompra.setText(null);
+				textTroco.setText(null);
+				textResultadoProduto.setText(null);
+				tableModelItem.limparListaDeItens();
 			}
 		});
 		btnConfirmar.setBounds(994, 687, 180, 40);

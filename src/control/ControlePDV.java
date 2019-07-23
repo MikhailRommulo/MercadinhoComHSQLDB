@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import model.ItemEstoque;
 import model.ItemPDV;
 import model.Produto;
 import model.dao.ProdutoDAO;
@@ -71,5 +74,17 @@ public class ControlePDV {
 	
 	public ArrayList<ItemPDV> getItens() {
 		return this.itens;
+	}
+	
+	public void confirmarCompra(List<ItemPDV> ips) {
+		for(ItemPDV ip: ips) {
+			ControleEstoque ce = new ControleEstoque();
+			ArrayList<ItemEstoque> ies = new ArrayList();
+			ies = ce.pesquisa(ip.getProduto().getCodigo(), "Código");
+			ItemEstoque ie = new ItemEstoque();
+			ie = ies.get(0);
+			ce.diminuirQuantidade(ie, ip.getQuantidade());
+		}
+		JOptionPane.showMessageDialog(null,"Compra confirmada!");
 	}
 }

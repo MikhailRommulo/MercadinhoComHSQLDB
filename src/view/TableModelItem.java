@@ -25,6 +25,11 @@ public class TableModelItem extends AbstractTableModel{
 		return this.listaDeItens;
 	}
 	
+	public void limparListaDeItens() {
+		this.listaDeItens.clear();
+		fireTableDataChanged();
+	}
+	
 	public ItemPDV pegarItem(int rowIndex) {
 		return this.listaDeItens.get(rowIndex);
 	}
