@@ -60,7 +60,7 @@ public class EstoqueTela extends JFrame {
 				ce.zerarQuantidade(ie);
 			}
 		});
-		btnZerarQuantidade.setBounds(1031, 667, 143, 32);
+		btnZerarQuantidade.setBounds(1031, 547, 143, 32);
 		contentPane.add(btnZerarQuantidade);
 		
 		JButton btnEditarQuantidade = new JButton("Editar Quantidade");
@@ -73,7 +73,7 @@ public class EstoqueTela extends JFrame {
 				ce.editarQuantidade(ie, quantidade);
 			}
 		});
-		btnEditarQuantidade.setBounds(880, 667, 143, 33);
+		btnEditarQuantidade.setBounds(880, 547, 143, 33);
 		contentPane.add(btnEditarQuantidade);
 		
 		JButton btnAumentarQuantidade = new JButton("+ Quantidade");
@@ -86,7 +86,7 @@ public class EstoqueTela extends JFrame {
 				ce.aumentarQuantidade(ie, quantidade);
 			}
 		});
-		btnAumentarQuantidade.setBounds(880, 710, 143, 32);
+		btnAumentarQuantidade.setBounds(880, 590, 143, 32);
 		contentPane.add(btnAumentarQuantidade);
 		
 		JButton btnDiminuirQuantidade = new JButton("- Quantidade");
@@ -99,7 +99,7 @@ public class EstoqueTela extends JFrame {
 				ce.diminuirQuantidade(ie, quantidade);
 			}
 		});
-		btnDiminuirQuantidade.setBounds(1031, 710, 143, 32);
+		btnDiminuirQuantidade.setBounds(1031, 590, 143, 32);
 		contentPane.add(btnDiminuirQuantidade);
 		ajustarLarguraColunas();		
 	}
@@ -116,7 +116,7 @@ public class EstoqueTela extends JFrame {
 	
 	public void initialize() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 1200, 800);
+		setBounds(0, 0, 1200, 680);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -126,7 +126,7 @@ public class EstoqueTela extends JFrame {
 		tabProdutos.setRowHeight(30);
 		
 		JScrollPane scrollProdutos = new JScrollPane(tabProdutos);
-		scrollProdutos.setBounds(10, 54, 1164, 597);
+		scrollProdutos.setBounds(10, 54, 1164, 477);
 		contentPane.add(scrollProdutos);		
 		
 		JComboBox comboTipoPesquisa = new JComboBox();
@@ -154,7 +154,7 @@ public class EstoqueTela extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnNovoProduto.setBounds(10, 705, 143, 32);
+		btnNovoProduto.setBounds(10, 547, 143, 32);
 		contentPane.add(btnNovoProduto);
 		
 		JButton btnExcluirProduto = new JButton("Excluir Produto");
@@ -165,7 +165,7 @@ public class EstoqueTela extends JFrame {
 				tableModelEstoque.removerItemEstoque(tabProdutos.getSelectedRow());
 			}
 		});
-		btnExcluirProduto.setBounds(163, 662, 143, 32);
+		btnExcluirProduto.setBounds(163, 547, 143, 32);
 		contentPane.add(btnExcluirProduto);
 		
 		JButton btnNewButton = new JButton("Editar Produto");
@@ -176,7 +176,7 @@ public class EstoqueTela extends JFrame {
 				cp.receberProduto(ie.getProduto());
 			}
 		});
-		btnNewButton.setBounds(10, 662, 143, 32);
+		btnNewButton.setBounds(10, 590, 143, 32);
 		contentPane.add(btnNewButton);
 	}
 }

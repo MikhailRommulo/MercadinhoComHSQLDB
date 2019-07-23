@@ -85,18 +85,18 @@ public class PDVTela extends JFrame{
         	}
         });
         btnValorRecebido.setFont(new Font("Arial", Font.BOLD, 16));
-        btnValorRecebido.setBounds(804, 687, 180, 40);
+        btnValorRecebido.setBounds(804, 567, 180, 40);
         contentPane.add(btnValorRecebido);
         
         JLabel lblTroco = new JLabel("Troco:");
         lblTroco.setFont(new Font("Arial", Font.BOLD, 16));
-        lblTroco.setBounds(20, 725, 63, 25);
+        lblTroco.setBounds(20, 605, 63, 25);
         contentPane.add(lblTroco);
         
         textTroco = new JTextField();
         textTroco.setFont(new Font("Arial", Font.PLAIN, 16));
         textTroco.setEditable(false);
-        textTroco.setBounds(76, 723, 130, 25);
+        textTroco.setBounds(76, 603, 130, 25);
         contentPane.add(textTroco);
         textTroco.setColumns(10);
         ajustarLarguraColunas();
@@ -116,7 +116,7 @@ public class PDVTela extends JFrame{
 	 */
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 1200, 800);
+		setBounds(0, 0, 1200, 680);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -147,15 +147,15 @@ public class PDVTela extends JFrame{
 		contentPane.add(tabPdv);
 		
 		JScrollPane scrollPane = new JScrollPane(tabPdv);
-		scrollPane.setBounds(10, 131, 1164, 500);
+		scrollPane.setBounds(10, 131, 1164, 380);
 		
-		JLabel lblTotal = new JLabel("Total");
-		lblTotal.setBounds(20, 690, 46, 14);
+		JLabel lblTotal = new JLabel("Total:");
+		lblTotal.setBounds(20, 570, 46, 14);
 		lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
 		
 		textTotCompra = new JTextField();
 		textTotCompra.setEditable(false);
-		textTotCompra.setBounds(76, 687, 130, 25);
+		textTotCompra.setBounds(76, 567, 130, 25);
 		textTotCompra.setFont(new Font("Arial", Font.PLAIN, 16));
 		textTotCompra.setColumns(10);
 		
@@ -170,7 +170,7 @@ public class PDVTela extends JFrame{
 				tableModelItem.limparListaDeItens();
 			}
 		});
-		btnConfirmar.setBounds(994, 687, 180, 40);
+		btnConfirmar.setBounds(994, 567, 180, 40);
 		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 16));
 		
 		JPanel panelAdicionaProduto = new JPanel();		
@@ -240,7 +240,7 @@ public class PDVTela extends JFrame{
 		
 		JPanel panelEditarRemover = new JPanel();
         panelEditarRemover.setBorder(new LineBorder(Color.GRAY));
-        panelEditarRemover.setBounds(10, 632, 1164, 40);
+        panelEditarRemover.setBounds(10, 512, 1164, 40);
         contentPane.add(panelEditarRemover);
         panelEditarRemover.setLayout(null);
         
