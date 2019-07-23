@@ -7,10 +7,12 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main {
 
-	private JFrame frame;
+	private JFrame frmMercadinho;
 
 	/**
 	 * Launch the application.
@@ -20,7 +22,7 @@ public class Main {
 			public void run() {
 				try {
 					Main window = new Main();
-					window.frame.setVisible(true);
+					window.frmMercadinho.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,49 +41,38 @@ public class Main {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 815, 550);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmMercadinho = new JFrame();
+		frmMercadinho.setTitle("Mercadinho");
+		frmMercadinho.setBounds(100, 100, 529, 179);
+		frmMercadinho.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMercadinho.getContentPane().setLayout(null);
 		
 		JButton btnPdvpontoDeVenda = new JButton("PDV(Ponto de venda)");
+		btnPdvpontoDeVenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PDVTela frame = new PDVTela();
+				frame.setVisible(true);
+			}
+		});
 		btnPdvpontoDeVenda.setFont(new Font("Arial", Font.BOLD, 16));
 		btnPdvpontoDeVenda.setIcon(new ImageIcon("images.png"));
 		btnPdvpontoDeVenda.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnPdvpontoDeVenda.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnPdvpontoDeVenda.setBounds(50, 100, 200, 100);
-		frame.getContentPane().add(btnPdvpontoDeVenda);
+		btnPdvpontoDeVenda.setBounds(10, 11, 200, 100);
+		frmMercadinho.getContentPane().add(btnPdvpontoDeVenda);
 		
 		JButton btnEstoque = new JButton("Estoque");
+		btnEstoque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EstoqueTela frame = new EstoqueTela();
+				frame.setVisible(true);
+			}
+		});
 		btnEstoque.setFont(new Font("Arial", Font.BOLD, 16));
 		btnEstoque.setIcon(new ImageIcon("estoque.PNG"));
 		btnEstoque.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnEstoque.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnEstoque.setBounds(300, 100, 200, 100);
-		frame.getContentPane().add(btnEstoque);
-		
-		JButton btnRelatorios = new JButton("Relat\u00F3rios");
-		btnRelatorios.setFont(new Font("Arial", Font.BOLD, 16));
-		btnRelatorios.setIcon(new ImageIcon("relatorio.png"));
-		btnRelatorios.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnRelatorios.setHorizontalTextPosition(SwingConstants.CENTER);;
-		btnRelatorios.setBounds(550, 100, 200, 100);
-		frame.getContentPane().add(btnRelatorios);
-		
-		JButton btnPromocoes = new JButton("Promo\u00E7\u00F5es");
-		btnPromocoes.setIcon(new ImageIcon("promocao.png"));
-		btnPromocoes.setFont(new Font("Arial", Font.BOLD, 16));
-		btnPromocoes.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnPromocoes.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnPromocoes.setBounds(133, 300, 200, 100);
-		frame.getContentPane().add(btnPromocoes);
-		
-		JButton btnEmpresaDados = new JButton("Dados da empresa");
-		btnEmpresaDados.setIcon(new ImageIcon("empresa.png"));
-		btnEmpresaDados.setFont(new Font("Arial", Font.BOLD, 16));
-		btnEmpresaDados.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnEmpresaDados.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnEmpresaDados.setBounds(466, 300, 200, 100);
-		frame.getContentPane().add(btnEmpresaDados);
+		btnEstoque.setBounds(303, 11, 200, 100);
+		frmMercadinho.getContentPane().add(btnEstoque);;
 	}
 }

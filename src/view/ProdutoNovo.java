@@ -44,7 +44,8 @@ public class ProdutoNovo extends JDialog {
 	 * Create the dialog.
 	 */
 	public ProdutoNovo() {
-		setBounds(100, 100, 450, 242);
+		setTitle("Novo produto");
+		setBounds(100, 100, 480, 242);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -101,7 +102,7 @@ public class ProdutoNovo extends JDialog {
 		contentPanel.add(label);
 		
 		JLabel lblusePontoPara = new JLabel("(use ponto para os centavos)");
-		lblusePontoPara.setBounds(270, 135, 154, 14);
+		lblusePontoPara.setBounds(270, 135, 184, 14);
 		contentPanel.add(lblusePontoPara);
 		{
 			JPanel buttonPane = new JPanel();

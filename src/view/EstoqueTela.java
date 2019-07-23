@@ -47,6 +47,7 @@ public class EstoqueTela extends JFrame {
 	}
 
 	public EstoqueTela() {
+		setTitle("Estoque");
 		initialize();
 		this.tableModelEstoque = new TableModelEstoque();
 		this.tabProdutos.setModel(tableModelEstoque);
@@ -114,7 +115,7 @@ public class EstoqueTela extends JFrame {
 	}
 	
 	public void initialize() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 1200, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

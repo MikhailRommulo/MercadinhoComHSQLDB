@@ -52,7 +52,8 @@ public class ProdutoEditar extends JDialog {
 	 * Create the dialog.
 	 */
 	public ProdutoEditar() {
-		setBounds(100, 100, 450, 229);
+		setTitle("Editar produto");
+		setBounds(100, 100, 480, 229);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -106,7 +107,7 @@ public class ProdutoEditar extends JDialog {
 		textPreco.setColumns(10);
 		
 		JLabel lblusePontoPara = new JLabel("(use ponto para os centavos)");
-		lblusePontoPara.setBounds(268, 117, 156, 14);
+		lblusePontoPara.setBounds(268, 117, 186, 14);
 		contentPanel.add(lblusePontoPara);
 		{
 			JPanel buttonPane = new JPanel();

@@ -30,13 +30,14 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.SystemColor;
 
-public class PDVTela {
+public class PDVTela extends JFrame{
 	
+	private JPanel contentPane;
 	private TableModelItem tableModelItem;
-	private JFrame frame;
 	private JTable tabPdv;
 	private JTextField textTotCompra;
 	private JTextField textEntradaCodigo;
@@ -51,8 +52,8 @@ public class PDVTela {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PDVTela window = new PDVTela();
-					window.frame.setVisible(true);
+					PDVTela frame = new PDVTela();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -64,6 +65,7 @@ public class PDVTela {
 	 * Create the application.
 	 */
 	public PDVTela() {
+		setTitle("Ponto de venda");
 		initialize();
 		this.tableModelItem = new TableModelItem();
         this.tabPdv.setModel(tableModelItem);
@@ -84,18 +86,18 @@ public class PDVTela {
         });
         btnValorRecebido.setFont(new Font("Arial", Font.BOLD, 16));
         btnValorRecebido.setBounds(804, 687, 180, 40);
-        frame.getContentPane().add(btnValorRecebido);
+        contentPane.add(btnValorRecebido);
         
         JLabel lblTroco = new JLabel("Troco:");
         lblTroco.setFont(new Font("Arial", Font.BOLD, 16));
         lblTroco.setBounds(20, 725, 63, 25);
-        frame.getContentPane().add(lblTroco);
+        contentPane.add(lblTroco);
         
         textTroco = new JTextField();
         textTroco.setFont(new Font("Arial", Font.PLAIN, 16));
         textTroco.setEditable(false);
         textTroco.setBounds(76, 723, 130, 25);
-        frame.getContentPane().add(textTroco);
+        contentPane.add(textTroco);
         textTroco.setColumns(10);
         ajustarLarguraColunas();
 	}
@@ -113,9 +115,12 @@ public class PDVTela {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(0, 0, 1200, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(0, 0, 1200, 800);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		ControlePDV controle = new ControlePDV();
 		
@@ -138,8 +143,8 @@ public class PDVTela {
 			}
 		});		
 		tabPdv.setRowHeight(30);
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(tabPdv);
+		contentPane.setLayout(null);
+		contentPane.add(tabPdv);
 		
 		JScrollPane scrollPane = new JScrollPane(tabPdv);
 		scrollPane.setBounds(10, 131, 1164, 500);
@@ -217,7 +222,7 @@ public class PDVTela {
 			
 			
 		});
-		frame.getContentPane().add(panelAdicionaProduto);
+		contentPane.add(panelAdicionaProduto);
 		
 		textResultadoProduto = new JTextField();
 		textResultadoProduto.setEditable(false);
@@ -228,15 +233,15 @@ public class PDVTela {
 		textResultadoProduto.setBounds(10, 66, 469, 32);
 		panelAdicionaProduto.add(textResultadoProduto);
 		textResultadoProduto.setColumns(10);
-		frame.getContentPane().add(scrollPane);
-		frame.getContentPane().add(btnConfirmar);
-		frame.getContentPane().add(lblTotal);
-		frame.getContentPane().add(textTotCompra);
+		contentPane.add(scrollPane);
+		contentPane.add(btnConfirmar);
+		contentPane.add(lblTotal);
+		contentPane.add(textTotCompra);
 		
 		JPanel panelEditarRemover = new JPanel();
         panelEditarRemover.setBorder(new LineBorder(Color.GRAY));
         panelEditarRemover.setBounds(10, 632, 1164, 40);
-        frame.getContentPane().add(panelEditarRemover);
+        contentPane.add(panelEditarRemover);
         panelEditarRemover.setLayout(null);
         
         JButton btnR = new JButton("Remover");
